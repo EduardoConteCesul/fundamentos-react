@@ -46,11 +46,11 @@ export function Home() {
     "Chocolate"
   ];
 
-  function handleAddProduct(){
-    
+  function handleAddProduct() {
+
   }
 
-  function handleProductRemove(name: String){
+  function handleProductRemove(name: String) {
     console.log(`Você clicou no botão de remover Produto ${name}`)
   }
 
@@ -72,11 +72,10 @@ export function Home() {
         </TouchableOpacity>
       </View>
 
-      <Text style ={style.listTitle}>Compras pendentes</Text>
+      <Text style={style.listTitle}>Compras pendentes</Text>
 
-      <View style={style.list}>
-        {/* <Text style={style.listEmpytText}>Comprou todos os produtos? Adicione produtos a sua lista de compras</Text> */}
-       
+      {/* <Text style={style.listEmpytText}>Comprou todos os produtos? Adicione produtos a sua lista de compras</Text> */}
+
 
       {/* <ScrollView>
          {
@@ -85,18 +84,19 @@ export function Home() {
       </ScrollView> */}
 
       <FlatList
+        contentContainerStyle={style.list}
         data={products}
         keyExtractor={(item) => item}
-        renderItem={({item}) => <Product name = {item} onRemove={() => handleProductRemove(item)} />}
+        renderItem={({ item }) => <Product name={item} onRemove={() => handleProductRemove(item)} />}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
           <Text style={style.listEmpytText}>
             Comprou todos os produtos? Adicione produtos a sua lista de compras
           </Text>
-          )}
+        )}
+        centerContent
       />
-     
-      </View>
+
     </View>
   )
 }
@@ -117,7 +117,7 @@ const style = StyleSheet.create({
   listTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom:16,
+    marginBottom: 16,
     marginTop: 18
   },
   listEmptyText: {
@@ -164,7 +164,7 @@ const style = StyleSheet.create({
     textAlign: 'center'
   },
   list: {
-    flex:1, 
+    flexGrow: 1,
     justifyContent: "center"
   }
 })
