@@ -1,8 +1,17 @@
-import { FlatList, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Alert, FlatList, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { Product } from "../../components/Product";
-import { style }  from "./styles";
+import { style } from "./styles";
+import { useEffect, useState } from "react";
 
 export function Home() {
+
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    Alert.alert("Oi", value, [{
+      onPress: () => setValue("Eduardo Conte")
+    }])
+  }, [value]);
 
   const products: string[] = [
     "Arroz",
@@ -48,11 +57,21 @@ export function Home() {
   ];
 
   function handleAddProduct() {
-
+    if (products.includes("Arroz")) {
+      Alert.alert("Produto já cadastrado", "Já existe um produto na lista com esse nome")
+    }
   }
 
   function handleProductRemove(name: String) {
-    console.log(`Você clicou no botão de remover Produto ${name}`)
+    Alert.alert("Remover", `Deseja remover o produto ${name}?`, [{
+      text: 'Sim',
+      onPress: () => Alert.alert("Deletado")
+    },
+    {
+      text: 'Não',
+      style: "cancel"
+    }
+    ])
   }
 
   return (
